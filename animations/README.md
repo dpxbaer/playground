@@ -11,3 +11,7 @@ Understanding Web Animations API based on examples and documentation as:
 1. [Galaxy](galaxy.html)
 2. [Alice](alice.html)
 3. [Ball](ball.html)
+
+## Checkout
+
+Checkout repository with Codesandbox by calling [https://codesandbox.io/s/github/dpxbaer/playground](https://codesandbox.io/s/github/dpxbaer/playground)
