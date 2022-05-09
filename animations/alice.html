@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice</title>
+    <style>
+        body {
+            background-color: #fff;
+        }
+
+        .alice-wrapper {
+            left: 50vw;
+            position: absolute;
+            top: 50vh;
+            transform: translate(-50%, -50%);
+        }
+
+        #alice {
+            /* animation: aliceTumbling infinite 3s linear; */
+            /* cursor: wait; */
+            height: 240px;
+            transition: transform 200ms;
+        }
+
+        #alice:hover {
+            transform: scale(1.5);
+        }
+
+        @keyframes aliceTumbling {
+            0% {
+                color: #000;
+                transform: rotate(0) translate3D(-50%, -50%, 0);
+            }
+
+            30% {
+                color: #431236;
+            }
+
+            100% {
+                color: #000;
+                transform: rotate(360deg) translate3D(-50%, -50%, 0);
+            }
+        }
+
+    </style>
+    <script type="module">
+        function initializeAlice () {
+            const aliceTumbling = [
+                { transform: 'rotate(0) translate3D(-50%, -50%, 0)', color: '#000' },
+                { color: '#431236', offset: 0.3 },
+                { transform: 'rotate(360deg) translate3D(-50%, -50%, 0)', color: '#000' }
+            ];
+    
+            const aliceTiming = {
+                duration: 3000,
+                iterations: Infinity
+            };
+    
+            const alice = document.querySelector("#alice");
+    
+            let aliceAnimation = alice.animate(
+                aliceTumbling,
+                aliceTiming
+            );
+    
+            const animationEndedCallback = (event) => {
+                console.log(event);
+                aliceAnimation = null;
+            }
+    
+            aliceAnimation.oncancel = animationEndedCallback;
+            aliceAnimation.onfinish = animationEndedCallback;
+    
+            alice.addEventListener('mouseenter', () => {
+                if (aliceAnimation) {
+                    aliceAnimation.pause();
+                }
+            });
+    
+            alice.addEventListener('mouseleave', () => {
+                if (aliceAnimation) {
+                    aliceAnimation.play();
+                }
+            });
+    
+            alice.addEventListener('click', () => {
+                if (aliceAnimation) {
+                    // aliceAnimation.playbackRate = -1;
+                    aliceAnimation.updatePlaybackRate(-4); // creates a smooth update
+                }
+            });
+        }
+
+        initializeAlice();
+    </script>
+</head>
+
+<body>
+    <div class="alice-wrapper">
+        <img id="alice" alt="Alice"
+            src="alice.webp">
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ball</title>
+    <style>
+        body {
+            overflow: hidden;
+            background: black;
+        }
+
+        @keyframes ballTumbling {
+            0% {
+                transform: none;
+            }
+
+            20% {
+                transform: rotate(447.48806898172626deg) rotateY(-447.343128355683deg) translateX(-41.48265227011305px) scale(1.6016400821196206) translateZ(19.351719360468202px);
+            }
+
+            40% {
+                transform: rotate(337.2492025745806deg) rotateY(578.2702231007028deg) translateX(486.38013642804384px) scale(3.070239068254387) translateZ(125.27004512193923px);
+            }
+
+            60% {
+                transform: rotate(1322.4780005476455deg) rotateY(468.90942286775487deg) translateX(846.2945987906445px) scale(3.1477650916644793) translateZ(127.12666337673528px);
+            }
+
+            80% {
+                transform: rotate(947.970880953892deg) rotateY(420.57685471332144deg) translateX(820.7844146159681px) scale(3.2377816449674204) translateZ(136.88401412660565px);
+            }
+
+            100% {
+                transform: none;
+            }
+        }
+
+        ball {
+            animation: ballTumbling infinite 10s linear;
+            position: absolute;
+            background: orangered;
+            left: 50vw;
+            top: 50vh;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            box-shadow: 0px 0px 40px magenta;
+        }
+
+        .ball--delayed {
+            animation-delay: 5s;
+        }
+    </style>
+</head>
+
+<body>
+    <ball class="ball" style="background: rgb(100, 128, 200)"></ball>
+    <ball class="ball ball--delayed" style="background: rgb(78, 175, 51)"></ball>
+</body>
+
+</html>
